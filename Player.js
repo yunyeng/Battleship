@@ -56,6 +56,15 @@ Player.prototype.checkPlaces = function(x, y, move, direction){
   }
   return true;
 }
+
+/* 
+  placeShip function has probabilistic run time
+  E(O(n)) -> infinity as n->size of the board
+  if number of ships increase, the function will run in infinite time
+  Right now, aggregate ship length will never be bigger than the board, so this won't be a problem.
+  Board size is constant 10x10, and ship number is 10, everything constant, we can simply say O(1)
+*/
+
 Player.prototype.placeShip = function(type, number){
   while(number > 0){
     var yPos = randomNumber(this.board.length);
