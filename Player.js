@@ -12,7 +12,6 @@ function Player(){
   this.shipNumber = 0;
   this.lost = false;
   this.totalShips = 10;
-  this.moves = {};
   // Inititate the board
   this.initBoard(this.totalShips);
 }
@@ -78,11 +77,14 @@ Player.prototype.initBoard = function(size) {
   this.placeShip(2, 3); // Destroyer * 3
   this.placeShip(1, 4); // Submarine * 4
 };
-// Result, 0: MISS, 1: HIT, 2: SUNK
+// Result, -1: ALREADY, 0: MISS, 1: HIT, 2: SUNK
 Player.prototype.hit = function(x, y){
   if(x < 0 || y < 0 || x >= this.board.length || y >= this.board[x].length || this.board[x][y] === null)
     return 0;
+  if(this.board[x][y] === true)
+    return -1;
   var ship = this.board[x][y];
+  this.board[x][y] = true;
   ship.getHit();
   if(ship.sunk){
     this.totalShips--;
