@@ -77,14 +77,6 @@ Player.prototype.initBoard = function(size) {
   this.placeShip(3, 2); // Cruiser * 2
   this.placeShip(2, 3); // Destroyer * 3
   this.placeShip(1, 4); // Submarine * 4
-  for(var i=0; i<size; i++){
-    for(var j=0; j<size; j++){
-      if(this.board[i][j] != null){
-        console.log(j + ", " + i);
-      }
-    }
-  }
-  console.log("\n");
 };
 // Result, 0: MISS, 1: HIT, 2: SUNK
 Player.prototype.hit = function(x, y){
